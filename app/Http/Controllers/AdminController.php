@@ -88,6 +88,37 @@ class AdminController extends Controller
         ]);
     }
 
+    public function profile()
+    {
+        return view('admin.profile.index');
+    }
+
+    public function profileedit(Admin $id)
+    {
+        return view('admin.profile.edit', ['admin' => $id]);
+    }
+
+    public function profileupdate(Admin $id)
+    {
+        request()->validate([
+            'name' => 'required',
+            'email' => 'required',
+            'password' => 'required',
+        ]);
+
+        $id->update([
+            'name' => request('name'),
+            'email' => request('email'),
+            // 'password' => request(Hash::make(['password'])),
+            // $2y$10$92IXUNpkjO0rOQ5byMi.Ye4oKoEa3Ro9llC/.og/at2.uheWG/igi
+
+            'password' => request('password'),
+            // 'password' => Hash::make($data['password']),
+        ]);
+
+        return redirect('admin/profile');
+    }
+
     // end rerister admin
 
     // public function logout()
