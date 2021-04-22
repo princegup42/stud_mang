@@ -3,6 +3,7 @@
 use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\AdminController;
 use App\Http\Controllers\CollegeController;
+use App\Http\Controllers\HomeController;
 use App\Http\Controllers\SkillController;
 
 /*
@@ -60,4 +61,12 @@ Route::group(['prefix' => 'admin'], function () {
         Route::put('/colleges/{college}', [CollegeController::class, 'update'])->name('college.update');
         Route::delete('/colleges/{college}', [CollegeController::class, 'destroy'])->name('college.destroy');
     });
+});
+
+
+Route::group(['middleware' => 'auth'], function () {
+
+    // Route::get('/profile', [AdminController::class, 'stdprofile']);
+    Route::get('/profile/{id}/edit', [HomeController::class, 'stdprofileedit']);
+    Route::put('/profile/{id}', [HomeController::class, 'stdprofileupdate'])->name('stdprofile.update');
 });
