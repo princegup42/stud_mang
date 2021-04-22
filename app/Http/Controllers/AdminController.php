@@ -109,12 +109,18 @@ class AdminController extends Controller
         $id->update([
             'name' => request('name'),
             'email' => request('email'),
-            // 'password' => request(Hash::make(['password'])),
-            // $2y$10$92IXUNpkjO0rOQ5byMi.Ye4oKoEa3Ro9llC/.og/at2.uheWG/igi
+            'password' => Hash::make(request('password')),
+            // 'password' => request('password'),
 
-            'password' => request('password'),
-            // 'password' => Hash::make($data['password']),
+            //     // $2y$10$92IXUNpkjO0rOQ5byMi.Ye4oKoEa3Ro9llC/.og/at2.uheWG/igi
+
+            //     // 'password' => Hash::make($data['password']),
         ]);
+
+        // $id->name = request('name');
+        // $id->email = request('email');
+        // $id->password = Hash::make(request('password'));
+        // $id->save();
 
         return redirect('admin/profile');
     }

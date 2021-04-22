@@ -41,7 +41,7 @@
                                 <div class="input-group-prepend">
                                     <span class="input-group-text"><i class="fas fa-lock    "></i></span>
                                 </div>
-                                <input type="text" class="form-control" id="password" name="password">
+                                <input type="password" class="form-control" id="password" name="password">
                             </div>
                             <!-- /.input group -->
                         </div>
