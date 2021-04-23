@@ -16,6 +16,7 @@ class ProController extends Controller
     use AuthenticatesUsers;
     use RegistersUsers;
 
+
     // public function login(Request $request)
     // {
     //     $credentials = $request->only('email', 'password');
