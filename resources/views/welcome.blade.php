@@ -143,7 +143,7 @@
                                         <div class="card-body login-card-body">
                                             <p class="login-box-msg">Sign in to start your session</p>
 
-                                            <form method="POST" action="{{ route('login') }}">
+                                            <form method="POST" action="{{ route('pro.login') }}">
                                                 @csrf
                                                 <div class="input-group mb-3">
                                                     <input id="email" type="email"
@@ -213,7 +213,7 @@
                                             </p>
                                             @endif
                                             <p class="mb-0">
-                                                <a href="{{ route('register') }}" class="text-center">Register a new
+                                                <a href="{{ route('pro.register') }}" class="text-center">Register a new
                                                     membership</a>
                                             </p>
                                         </div>

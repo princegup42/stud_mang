@@ -20,14 +20,14 @@
 <body class="hold-transition register-page">
     <div class="register-box">
         <div class="register-logo">
-            <a href="../../index2.html"><b>Student </b>Sign Up</a>
+            <a href="../../index2.html"><b>Professional </b>Sign Up</a>
         </div>
 
         <div class="card">
             <div class="card-body register-card-body">
                 <p class="login-box-msg">Register a new membership</p>
 
-                <form method="POST" action="{{ route('register') }}">
+                <form method="POST" action="{{ route('pro.register') }}">
                     @csrf
                     <div class="input-group mb-3">
                         <input id="name" type="text" class="form-control @error('name') is-invalid @enderror"

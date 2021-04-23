@@ -1,10 +1,11 @@
 <?php
 
 use Illuminate\Support\Facades\Route;
-use App\Http\Controllers\AdminController;
-use App\Http\Controllers\CollegeController;
+use App\Http\Controllers\ProController;
 use App\Http\Controllers\HomeController;
+use App\Http\Controllers\AdminController;
 use App\Http\Controllers\SkillController;
+use App\Http\Controllers\CollegeController;
 
 /*
 |--------------------------------------------------------------------------
@@ -17,13 +18,17 @@ use App\Http\Controllers\SkillController;
 |
 */
 
-Route::get('/', function () {
-    return view('welcome');
-});
+// Route::get('/', function () {
+//     return view('welcome');
+// });
 
 Auth::routes();
 
+Route::view('/', 'welcome')->name('welcome');
+
 Route::get('/home', [App\Http\Controllers\HomeController::class, 'index'])->name('home');
+
+// admin
 
 Route::group(['prefix' => 'admin'], function () {
     Route::group(['middleware' => 'admin.guest'], function () {
@@ -60,6 +65,28 @@ Route::group(['prefix' => 'admin'], function () {
         Route::get('/colleges/{college}/edit', [CollegeController::class, 'edit']);
         Route::put('/colleges/{college}', [CollegeController::class, 'update'])->name('college.update');
         Route::delete('/colleges/{college}', [CollegeController::class, 'destroy'])->name('college.destroy');
+    });
+});
+
+// Professional
+
+Route::group(['prefix' => 'pro'], function () {
+    Route::group(['middleware' => 'pro.guest'], function () {
+        Route::view('login', 'pro.login')->name('pro.login');
+        Route::post('login', [App\Http\Controllers\ProController::class, 'login'])->name('pro.auth');
+        Route::view('register', 'pro.register')->name('pro.register');
+        Route::post('register', [App\Http\Controllers\ProController::class, 'register'])->name('pro.register');
+    });
+
+    Route::group(['middleware' => 'pro.auth'], function () {
+        Route::view('home', 'pro.home')->name('pro.home');
+        Route::post('logout', [App\Http\Controllers\ProController::class, 'logout'])->name('pro.logout');
+
+        // Profile
+
+        Route::get('/profile', [ProController::class, 'profile']);
+        Route::get('/profile/{id}/edit', [ProController::class, 'profileedit']);
+        Route::put('/profile/{id}', [ProController::class, 'profileupdate'])->name('profile.update');
     });
 });
 
