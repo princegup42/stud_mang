@@ -9,7 +9,8 @@
                 <div class="form-group row">
                     <label class="col-lg-3 col-form-label form-control-label">Edit Skill</label>
                     <div class="col-lg-9">
-                        <input id="name" name="name" class="form-control" type="text" value="{{ $skill->name }}" />
+                        <input id="name" name="name" class="form-control" autocomplete="off" type="text"
+                            value="{{ $skill->name }}" />
                     </div>
                 </div>
                 <div class="form-group row">

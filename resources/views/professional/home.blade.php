@@ -1,4 +1,4 @@
-@extends('layouts.pro')
+@extends('layouts.professional')
 @section('content')
 
 <!-- Page Heading -->
@@ -35,13 +35,15 @@
                     </tr>
                 </thead>
                 <tbody>
+                    @foreach ($jobs as $job)
                     <tr>
-                        <td scope="row">1</td>
-                        <td>new job</td>
+                        <td scope="row">{{ $job->id}}</td>
+                        <td>{{ $job->job_title}}</td>
                         <td>giit</td>
                         <td>giit</td>
                         <td>giit</td>
                     </tr>
+                    @endforeach
                     <tr>
                         <td scope="row">2</td>
                         <td>job 2</td>

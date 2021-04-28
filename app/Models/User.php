@@ -2,10 +2,13 @@
 
 namespace App\Models;
 
+use App\Models\Skill;
+use App\Models\College;
+use Illuminate\Database\Eloquent\Model;
+use Illuminate\Notifications\Notifiable;
 use Illuminate\Contracts\Auth\MustVerifyEmail;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Foundation\Auth\User as Authenticatable;
-use Illuminate\Notifications\Notifiable;
 
 class User extends Authenticatable
 {
@@ -19,6 +22,8 @@ class User extends Authenticatable
     protected $fillable = [
         'name',
         'email',
+        'college_id',
+        'skill_id',
         'password',
     ];
 
@@ -40,4 +45,14 @@ class User extends Authenticatable
     protected $casts = [
         'email_verified_at' => 'datetime',
     ];
+
+    public function college()
+    {
+        return $this->belongsTo(College::class);
+    }
+
+    public function skill()
+    {
+        return $this->belongsTo(Skill::class);
+    }
 }

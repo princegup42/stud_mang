@@ -4,14 +4,14 @@ namespace App\Http\Middleware;
 
 use Illuminate\Auth\Middleware\Authenticate as Middleware;
 
-class ProAuthenticate extends Middleware
+class ProfessionalAuthenticate extends Middleware
 {
     protected function authenticate($request, array $guards)
     {
-        if ($this->auth->guard('pro')->check()) {
-            return $this->auth->shouldUse('pro');
+        if ($this->auth->guard('professional')->check()) {
+            return $this->auth->shouldUse('professional');
         }
-        $this->unauthenticated($request, ['pro']);
+        $this->unauthenticated($request, ['professional']);
     }
     /**
      * Get the path the user should be redirected to when they are not authenticated.
@@ -22,7 +22,7 @@ class ProAuthenticate extends Middleware
     protected function redirectTo($request)
     {
         if (!$request->expectsJson()) {
-            return route('welcome');
+            return route('login');
         }
     }
 }

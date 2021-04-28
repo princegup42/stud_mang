@@ -62,7 +62,7 @@ class LoginController extends Controller
 
     protected function loggedOut(Request $request)
     {
-        return redirect('/');
+        return redirect('login');
     }
 
     protected function guard()

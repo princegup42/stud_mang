@@ -7,7 +7,7 @@ use Closure;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
 
-class ProRedirectIfAuthenticated
+class ProfessionalRedirectIfAuthenticated
 {
     /**
      * Handle an incoming request.
@@ -20,8 +20,8 @@ class ProRedirectIfAuthenticated
     public function handle(Request $request, Closure $next, ...$guards)
     {
 
-        if (Auth::guard('pro')->check()) {
-            return redirect()->route('pro.home');
+        if (Auth::guard('professional')->check()) {
+            return redirect()->route('professional.home');
         }
 
         return $next($request);

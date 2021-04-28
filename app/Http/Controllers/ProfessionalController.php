@@ -2,8 +2,9 @@
 
 namespace App\Http\Controllers;
 
+use App\Models\Job;
 use Auth;
-use App\Models\Pro;
+use App\Models\Professional;
 use Illuminate\Http\Request;
 use Illuminate\Http\JsonResponse;
 use Illuminate\Support\Facades\Hash;
@@ -11,28 +12,43 @@ use Illuminate\Foundation\Auth\RegistersUsers;
 use Illuminate\Support\Facades\Validator;
 use Illuminate\Foundation\Auth\AuthenticatesUsers;
 
-class ProController extends Controller
+class ProfessionalController extends Controller
 {
     use AuthenticatesUsers;
     use RegistersUsers;
 
 
-    // public function login(Request $request)
-    // {
-    //     $credentials = $request->only('email', 'password');
-    //     if (Auth::guard('pro')->attempt($credentials, $request->remember)) {
-    //         $user = Pro::where('email', $request->email)->first();
-    //         Auth::guard('pro')->login($user);
-    //         return redirect()->route('pro.home');
-    //     }
-    //     return redirect()->route('pro.login')->with('status', 'Failed To Process Login');
-    // }
 
-    protected $redirectTo = '/pro/dashboard';
+    protected $redirectTo = '/professional/home';
 
-    protected function authenticated(Request $request, $user)
+    protected function authenticated(Request $request)
     {
-        return redirect()->route('pro.home');
+        // $jobs = Job::latest()->paginate(7);
+
+        // $params = [
+        //     'jobs' => $jobs,
+        // ];
+
+        // return view('professional.home')->with($params);
+
+
+        return redirect()->route('professional.home');
+        // return view(
+        //     'professional.home',
+        //     ['jobs' => $jobs]
+        // );
+
+        // return redirect()->route('professional.home');
+    }
+
+    public function showdata()
+    {
+        $jobs = Job::latest()->paginate(7);
+        $data = [
+            'jobs' => $jobs,
+        ];
+
+        return view('professional.home')->with($data);
     }
 
     public function logout(Request $request)
@@ -44,20 +60,20 @@ class ProController extends Controller
 
         return $request->wantsJson()
             ? new JsonResponse([], 204)
-            : redirect('/');
+            : redirect('login');
     }
 
     protected function loggedOut(Request $request)
     {
-        return redirect()->route('welcome');
+        return redirect()->route('login');
     }
 
     protected function guard()
     {
-        return Auth::guard('pro');
+        return Auth::guard('professional');
     }
 
-    // register pro
+    // register professional
 
     /**
      * Get a validator for an incoming registration request.
@@ -82,7 +98,7 @@ class ProController extends Controller
      */
     protected function create(array $data)
     {
-        return Pro::create([
+        return Professional::create([
             'name' => $data['name'],
             'email' => $data['email'],
             'password' => Hash::make($data['password']),
@@ -91,15 +107,15 @@ class ProController extends Controller
 
     public function profile()
     {
-        return view('pro.profile.index');
+        return view('professional.profile.index');
     }
 
-    public function profileedit(Pro $id)
+    public function profileedit(Professional $id)
     {
-        return view('pro.profile.edit', ['pro' => $id]);
+        return view('professional.profile.edit', ['professional' => $id]);
     }
 
-    public function profileupdate(Pro $id)
+    public function profileupdate(Professional $id)
     {
         request()->validate([
             'name' => 'required',
@@ -123,16 +139,16 @@ class ProController extends Controller
         // $id->password = Hash::make(request('password'));
         // $id->save();
 
-        return redirect('pro/profile');
+        return redirect('professional/profile');
     }
 
-    // end rerister pro
+    // end rerister professional
 
     // public function logout()
     // {
 
-    //     if (Auth::guard('pro')->logout()) {
-    //         return redirect()->route('pro.logout')->with('status', 'Logout Successfully!');
+    //     if (Auth::guard('professional')->logout()) {
+    //         return redirect()->route('professional.logout')->with('status', 'Logout Successfully!');
     //     }
     // }
 }

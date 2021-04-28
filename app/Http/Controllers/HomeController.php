@@ -3,6 +3,8 @@
 namespace App\Http\Controllers;
 
 use App\Models\User;
+use App\Models\Skill;
+use App\Models\College;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Hash;
 
@@ -25,12 +27,25 @@ class HomeController extends Controller
      */
     public function index()
     {
-        return view('home');
+
+        $users = User::with('college')->get();
+        return view('home', compact('users'));
+        // return User::find(1)->showCollege()->name;
+        // return view('home');
     }
 
     public function stdprofileedit(User $id)
     {
-        return view('std.profile.edit', ['user' => $id]);
+        $colleges = College::all();
+        $skills = Skill::all();
+        $data = [
+            'colleges' => $colleges,
+            'skills' => $skills,
+            'user' => $id,
+        ];
+
+        return view('std.profile.edit')->with($data);
+        // return view('std.profile.edit', ['user' => $id]);
     }
 
     public function stdprofileupdate(User $id)
@@ -41,9 +56,14 @@ class HomeController extends Controller
             'password' => 'required',
         ]);
 
+        // dd($id->all());
+
         $id->update([
             'name' => request('name'),
             'email' => request('email'),
+
+            'skill_id' => request('skill_id', []),
+            'college_id' => implode(request('college_id')),
             'password' => Hash::make(request('password')),
         ]);
 

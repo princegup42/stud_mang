@@ -23,7 +23,7 @@
                 <div class="dropdown-menu dropdown-menu-right shadow animated--fade-in"
                     aria-labelledby="dropdownMenuLink">
                     <div class="dropdown-header">Dropdown Header:</div>
-                    <a class="dropdown-item" href="#">Action</a>
+                    <a class="dropdown-item" href="/profile/{{ Auth::user()->id }}/edit">Edit</a>
                     <a class="dropdown-item" href="#">Another action</a>
                     <div class="dropdown-divider"></div>
                     <a class="dropdown-item" href="#">Something else here</a>
@@ -36,21 +36,18 @@
                 <img class="profile-user-img img-fluid img-circle" src="{{ asset('img/undraw_profile.svg') }}"
                     alt="User profile picture" width="250" height="250">
             </div>
-
-            <h3 class="profile-username text-center">{{ Auth::user()->name }}</h3>
-
-            <p class="text-muted text-center">Software Interns</p>
-
+            @foreach ($users as $user)
+            <h3 class="profile-username text-center">{{ $user->name }}</h3>
+            <p class="text-muted text-center">{{ $user->college->name }}</p>
             <ul class="list-group list-group-unbordered mb-3">
                 <li class="list-group-item">
-                    <b>Email</b> <a class="float-right">{{ Auth::user()->email }}</a>
+                    <b>Email</b> <a class="float-right">{{ $user->email }}</a>
                 </li>
                 <li class="list-group-item">
-                    <b>Following</b> <a class="float-right">543</a>
+                    <b>Skills</b> <a class="float-right">Php</a>
                 </li>
             </ul>
-
-            <a href="/profile/{{ Auth::user()->id }}/edit" class="btn btn-primary btn-block"><b>Edit</b></a>
+            @endforeach
         </div>
     </div>
 </div>

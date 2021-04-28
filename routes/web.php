@@ -1,7 +1,7 @@
 <?php
 
 use Illuminate\Support\Facades\Route;
-use App\Http\Controllers\ProController;
+use App\Http\Controllers\ProfessionalController;
 use App\Http\Controllers\HomeController;
 use App\Http\Controllers\AdminController;
 use App\Http\Controllers\SkillController;
@@ -18,13 +18,13 @@ use App\Http\Controllers\CollegeController;
 |
 */
 
-// Route::get('/', function () {
-//     return view('welcome');
-// });
+Route::get('/', function () {
+    return view('welcome');
+});
 
 Auth::routes();
 
-Route::view('/', 'welcome')->name('welcome');
+// Route::view('/', 'welcome')->name('welcome');
 
 Route::get('/home', [App\Http\Controllers\HomeController::class, 'index'])->name('home');
 
@@ -34,8 +34,6 @@ Route::group(['prefix' => 'admin'], function () {
     Route::group(['middleware' => 'admin.guest'], function () {
         Route::view('login', 'admin.login')->name('admin.login');
         Route::post('login', [App\Http\Controllers\AdminController::class, 'login'])->name('admin.auth');
-        Route::view('register', 'admin.register')->name('admin.register');
-        Route::post('register', [App\Http\Controllers\AdminController::class, 'register'])->name('admin.register');
     });
 
     Route::group(['middleware' => 'admin.auth'], function () {
@@ -48,7 +46,7 @@ Route::group(['prefix' => 'admin'], function () {
         Route::get('/profile/{id}/edit', [AdminController::class, 'profileedit']);
         Route::put('/profile/{id}', [AdminController::class, 'profileupdate'])->name('profile.update');
 
-        // skills list routes
+        // skills list
 
         Route::get('/skills', [SkillController::class, 'index']);
         Route::get('/skills/create', [SkillController::class, 'create']);
@@ -70,23 +68,23 @@ Route::group(['prefix' => 'admin'], function () {
 
 // Professional
 
-Route::group(['prefix' => 'pro'], function () {
-    Route::group(['middleware' => 'pro.guest'], function () {
-        Route::view('login', 'pro.login')->name('pro.login');
-        Route::post('login', [App\Http\Controllers\ProController::class, 'login'])->name('pro.auth');
-        Route::view('register', 'pro.register')->name('pro.register');
-        Route::post('register', [App\Http\Controllers\ProController::class, 'register'])->name('pro.register');
+Route::group(['prefix' => 'professional'], function () {
+    Route::group(['middleware' => 'professional.guest'], function () {
+        Route::post('login', [App\Http\Controllers\ProfessionalController::class, 'login'])->name('professional.auth');
+        Route::view('register', 'professional.register')->name('professional.register');
+        Route::post('register', [App\Http\Controllers\ProfessionalController::class, 'register'])->name('professional.register');
     });
 
-    Route::group(['middleware' => 'pro.auth'], function () {
-        Route::view('home', 'pro.home')->name('pro.home');
-        Route::post('logout', [App\Http\Controllers\ProController::class, 'logout'])->name('pro.logout');
+    Route::group(['middleware' => 'professional.auth'], function () {
+        // Route::view('home', 'professional.home')->name('professional.home');
+        Route::get('home', [ProfessionalController::class, 'showdata'])->name('professional.home');
+        Route::post('logout', [App\Http\Controllers\ProfessionalController::class, 'logout'])->name('professional.logout');
 
         // Profile
 
-        Route::get('/profile', [ProController::class, 'profile']);
-        Route::get('/profile/{id}/edit', [ProController::class, 'profileedit']);
-        Route::put('/profile/{id}', [ProController::class, 'profileupdate'])->name('profile.update');
+        Route::get('/profile', [ProfessionalController::class, 'profile']);
+        Route::get('/profile/{id}/edit', [ProfessionalController::class, 'profileedit']);
+        Route::put('/profile/{id}', [ProfessionalController::class, 'profileupdate'])->name('proprofile.update');
     });
 });
 

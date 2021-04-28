@@ -2,8 +2,9 @@
 
 namespace App\Models;
 
-use Illuminate\Database\Eloquent\Factories\HasFactory;
+use App\Models\User;
 use Illuminate\Database\Eloquent\Model;
+use Illuminate\Database\Eloquent\Factories\HasFactory;
 
 class College extends Model
 {
@@ -15,4 +16,9 @@ class College extends Model
         'email',
         'address',
     ];
+
+    public function user()
+    {
+        return $this->hasMany(User::class);
+    }
 }

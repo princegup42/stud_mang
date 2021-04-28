@@ -8,7 +8,7 @@
                 <div class="form-group row">
                     <label class="col-lg-3 col-form-label form-control-label">Add Skill</label>
                     <div class="col-lg-9">
-                        <input id="name" name="name" class="form-control" type="text" value="" />
+                        <input id="name" name="name" class="form-control" autocomplete="off" type="text" value="" />
                     </div>
                 </div>
                 <div class="form-group row">
