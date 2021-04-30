@@ -85,6 +85,11 @@ Route::group(['prefix' => 'professional'], function () {
         Route::get('/profile', [ProfessionalController::class, 'profile']);
         Route::get('/profile/{id}/edit', [ProfessionalController::class, 'profileedit']);
         Route::put('/profile/{id}', [ProfessionalController::class, 'profileupdate'])->name('proprofile.update');
+
+        // Job Post
+
+        Route::get('postjob', [ProfessionalController::class, 'createJob']);
+        Route::post('postjob', [ProfessionalController::class, 'postJob']);
     });
 });
 

@@ -29,9 +29,8 @@ class HomeController extends Controller
     {
 
         $users = User::with('college')->get();
+        // $skills = Skill::with('skill')->get();
         return view('home', compact('users'));
-        // return User::find(1)->showCollege()->name;
-        // return view('home');
     }
 
     public function stdprofileedit(User $id)

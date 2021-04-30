@@ -10,12 +10,13 @@ class Job extends Model
     use HasFactory;
 
     protected $fillable = [
-        'job_title',
-        'job_skills',
+        'title',
+        'skill_id',
         'company_name',
         'company_phone',
         'company_email',
         'company_address',
-        'job_description',
+        'company_website',
+        'description',
     ];
 }

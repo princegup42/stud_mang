@@ -5,14 +5,14 @@
 <div class="col col-md-12 py-4">
     <div class="d-sm-flex align-items-center justify-content-between mb-4">
         <h1 class="h3 mb-0 text-gray-800">Dashboard</h1>
-        <a href="#" class="d-none d-sm-inline-block btn btn-sm btn-primary shadow-sm"><i
+        <a href="/professional/postjob" class="d-none d-sm-inline-block btn btn-sm btn-primary shadow-sm"><i
                 class="fas fa-download fa-sm text-white-50"></i> Post Jobs</a>
     </div>
 </div>
 
 <!-- Content Row -->
 <!-- Area Chart -->
-<div class="col-xl-8 col-lg-7">
+<div class="col-xl-12 col-lg-7">
     <div class="card shadow mb-4">
         <!-- Card Header - Dropdown -->
         <div
@@ -27,58 +27,30 @@
             <table class="table">
                 <thead>
                     <tr>
-                        <th>ID</th>
-                        <th>Title</th>
-                        <th>Company</th>
-                        <th>Company</th>
-                        <th>Company</th>
+                        <th>Job Title</th>
+                        <th>Company Name</th>
+                        <th>Phone</th>
+                        <th>Email</th>
+                        <th>Address</th>
+                        <th>Website</th>
+                        <th>Description</th>
+                        <th>Skills</th>
                     </tr>
                 </thead>
                 <tbody>
                     @foreach ($jobs as $job)
                     <tr>
-                        <td scope="row">{{ $job->id}}</td>
-                        <td>{{ $job->job_title}}</td>
-                        <td>giit</td>
-                        <td>giit</td>
-                        <td>giit</td>
+                        <td>{{ $job->title}}</td>
+                        <td>{{ $job->company_name}}</td>
+                        <td>{{ $job->company_phone}}</td>
+                        <td>{{ $job->company_email}}</td>
+                        <td>{{ $job->company_address}}</td>
+                        <td>{{ $job->company_website}}</td>
+                        <td>{{ $job->description}}</td>
+                        <td>{{ $job->skill_id}}</td>
+
                     </tr>
                     @endforeach
-                    <tr>
-                        <td scope="row">2</td>
-                        <td>job 2</td>
-                        <td>phpstrom</td>
-                        <td>phpstrom</td>
-                        <td>phpstrom</td>
-                    </tr>
-                    <tr>
-                        <td scope="row">2</td>
-                        <td>job 2</td>
-                        <td>phpstrom</td>
-                        <td>phpstrom</td>
-                        <td>phpstrom</td>
-                    </tr>
-                    <tr>
-                        <td scope="row">2</td>
-                        <td>job 2</td>
-                        <td>phpstrom</td>
-                        <td>phpstrom</td>
-                        <td>phpstrom</td>
-                    </tr>
-                    <tr>
-                        <td scope="row">2</td>
-                        <td>job 2</td>
-                        <td>phpstrom</td>
-                        <td>phpstrom</td>
-                        <td>phpstrom</td>
-                    </tr>
-                    <tr>
-                        <td scope="row">2</td>
-                        <td>job 2</td>
-                        <td>phpstrom</td>
-                        <td>phpstrom</td>
-                        <td>phpstrom</td>
-                    </tr>
                 </tbody>
             </table>
         </div>
@@ -86,7 +58,7 @@
 </div>
 
 <!-- Pie Chart -->
-<div class="col-xl-4 col-lg-5">
+{{-- <div class="col-xl-4 col-lg-5">
     <div class="card card-primary card-outline direct-chat direct-chat-primary">
         <div class="card-header">
             <h3 class="card-title">Recent Chat</h3>
@@ -207,5 +179,5 @@
         </div>
         <!-- /.card-footer-->
     </div>
-</div>
+</div> --}}
 @endsection

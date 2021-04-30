@@ -16,9 +16,20 @@
 <script src="{{ asset('js/demo/chart-pie-demo.js') }}"></script>
 
 
-@if (Request::is('pro/home'))
+@if (Request::is('professional/home'))
 <!-- AdminLTE App -->
 <script src="{{ asset('dist/js/adminlte.min.js') }}"></script>
 <!-- AdminLTE for demo purposes -->
 <script src="{{ asset('dist/js/demo.js') }}"></script>
+@endif
+@if (Request::is('professional/postjob'))
+<!-- BS-Stepper -->
+<script src="{{ asset('plugins/select2/js/select2.full.min.js') }}"></script>
+<script>
+    $(function () {
+        //Initialize Select2 Elements
+        $('.select2').select2()
+
+    })
+</script>
 @endif

@@ -2,14 +2,15 @@
 
 namespace App\Http\Controllers;
 
-use App\Models\Job;
 use Auth;
+use App\Models\Job;
+use App\Models\Skill;
 use App\Models\Professional;
 use Illuminate\Http\Request;
 use Illuminate\Http\JsonResponse;
 use Illuminate\Support\Facades\Hash;
-use Illuminate\Foundation\Auth\RegistersUsers;
 use Illuminate\Support\Facades\Validator;
+use Illuminate\Foundation\Auth\RegistersUsers;
 use Illuminate\Foundation\Auth\AuthenticatesUsers;
 
 class ProfessionalController extends Controller
@@ -23,22 +24,7 @@ class ProfessionalController extends Controller
 
     protected function authenticated(Request $request)
     {
-        // $jobs = Job::latest()->paginate(7);
-
-        // $params = [
-        //     'jobs' => $jobs,
-        // ];
-
-        // return view('professional.home')->with($params);
-
-
         return redirect()->route('professional.home');
-        // return view(
-        //     'professional.home',
-        //     ['jobs' => $jobs]
-        // );
-
-        // return redirect()->route('professional.home');
     }
 
     public function showdata()
@@ -140,6 +126,42 @@ class ProfessionalController extends Controller
         // $id->save();
 
         return redirect('professional/profile');
+    }
+
+    public function createJob()
+    {
+        $skills = Skill::all();
+        $data = [
+            'skills' => $skills,
+        ];
+        return view('professional.job.create')->with($data);
+    }
+
+    public function postJob(Request $request)
+    {
+        request()->validate([
+            'title' => 'required',
+            'company_name' => 'required',
+            'company_phone' => 'required',
+            'company_email' => 'required',
+            'company_address' => 'required',
+            'company_website' => 'required',
+            'skill_id' => 'required',
+            'description' => 'required',
+        ]);
+
+        Job::create([
+            'title' => request('title'),
+            'company_name' => request('company_name'),
+            'company_phone' => request('company_phone'),
+            'company_email' => request('company_email'),
+            'company_address' => request('company_address'),
+            'company_website' => request('company_website'),
+            'skill_id' => request('skill_id'),
+            'description' => request('description'),
+        ]);
+
+        return redirect('/professional/home');
     }
 
     // end rerister professional
