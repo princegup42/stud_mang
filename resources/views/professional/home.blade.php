@@ -35,6 +35,7 @@
                         <th>Website</th>
                         <th>Description</th>
                         <th>Skills</th>
+                        <th>Edit</th>
                     </tr>
                 </thead>
                 <tbody>
@@ -48,6 +49,8 @@
                         <td>{{ $job->company_website}}</td>
                         <td>{{ $job->description}}</td>
                         <td>{{ $job->skill_id}}</td>
+                        <td><a href="/professional/postjob/{{ $job->id }}/edit"
+                                class="btn btn-primary btn-block"><b>Edit</b></a></td>
 
                     </tr>
                     @endforeach

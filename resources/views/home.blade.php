@@ -56,7 +56,7 @@
     <div class="card shadow mb-4">
         <!-- Card Header - Dropdown -->
         <div class="card-header py-3 d-flex flex-row align-items-center justify-content-between">
-            <h6 class="m-0 font-weight-bold text-primary">Earnings Overview</h6>
+            <h6 class="m-0 font-weight-bold text-primary">Latest Jobs Post By Professional</h6>
             <div class="dropdown no-arrow">
                 <a class="dropdown-toggle" href="#" role="button" id="dropdownMenuLink" data-toggle="dropdown"
                     aria-haspopup="true" aria-expanded="false">
@@ -74,104 +74,49 @@
         </div>
         <!-- Card Body -->
         <div class="card-body">
+            <div class="accordion" id="accordionExample">
+                @foreach ($jobs as $job)
+                <div class="card">
+                    <div class="card-header" id="headingOne">
+                        <h2 class="mb-0">
+                            <button class="btn btn-link" type="button" data-toggle="collapse"
+                                data-target="#collapse{{ $job->id }}" aria-expanded="true"
+                                aria-controls="collapse{{ $job->id }}"><span class="badge badge-pill badge-success">New
+                                </span>
+                                {{ $job->title }}
+                            </button>
+                        </h2>
+                    </div>
 
-            <!-- Section Tittle -->
-            {{-- <dv class="row justify-content-center"> --}}
-            {{-- <div class="col-xl-10"> --}}
-            <!-- single-job-content -->
-            <div class="single-job-items mb-30">
-                <div class="job-items">
-                    <div class="company-img">
-                        <a href="job_details.html"><img src="assets/img/icon/job-list1.png" alt=""></a>
-                    </div>
-                    <div class="job-tittle">
-                        <a href="job_details.html">
-                            <h4>Digital Marketer</h4>
-                        </a>
-                        <ul>
-                            <li>Creative Agency</li>
-                            <li><i class="fas fa-map-marker-alt"></i>Athens, Greece</li>
-                            <li>$3500 - $4000</li>
-                        </ul>
+                    <div id="collapse{{ $job->id }}" class="collapse" aria-labelledby="headingOne"
+                        data-parent="#accordionExample">
+                        <div class="card-body">
+                            <div class="row">
+                                <div class="col-6">
+                                    <p> <strong>Company Name:</strong> {{ $job->company_name }}</p>
+                                    <p> <strong>Company Phone:</strong> {{ $job->company_phone }}</p>
+                                    <p> <strong>Company Email:</strong> {{ $job->company_email }}</p>
+                                </div>
+                                <div class="col-6">
+                                    <p> <strong>Company Address:</strong> {{ $job->company_address }}</p>
+                                    <p> <strong>Company Website:</strong> {{ $job->company_website }}</p>
+                                    <p> <strong>Skills Required:</strong> {{ $job->skill_id }}</p>
+                                </div>
+                            </div>
+                            <div class="row">
+                                <div class="col"><strong>Description:</strong> {{ $job->description }}</div>
+                            </div>
+                            <div class="row">
+                                <div class="col-6"></div>
+                                <div class="col-6">
+                                    <a name="" id="" class="btn btn-info float-right" href="#" role="button">Apply</a>
+                                </div>
+                            </div>
+                        </div>
                     </div>
                 </div>
-                <div class="items-link f-right">
-                    <a href="job_details.html">Full Time</a>
-                    <span>7 hours ago</span>
-                </div>
+                @endforeach
             </div>
-            <!-- single-job-content -->
-            <div class="single-job-items mb-30">
-                <div class="job-items">
-                    <div class="company-img">
-                        <a href="job_details.html"><img src="assets/img/icon/job-list2.png" alt=""></a>
-                    </div>
-                    <div class="job-tittle">
-                        <a href="job_details.html">
-                            <h4>Digital Marketer</h4>
-                        </a>
-                        <ul>
-                            <li>Creative Agency</li>
-                            <li><i class="fas fa-map-marker-alt"></i>Athens, Greece</li>
-                            <li>$3500 - $4000</li>
-                        </ul>
-                    </div>
-                </div>
-                <div class="items-link f-right">
-                    <a href="job_details.html">Full Time</a>
-                    <span>7 hours ago</span>
-                </div>
-            </div>
-            <!-- single-job-content -->
-            <div class="single-job-items mb-30">
-                <div class="job-items">
-                    <div class="company-img">
-                        <a href="job_details.html"><img src="assets/img/icon/job-list3.png" alt=""></a>
-                    </div>
-                    <div class="job-tittle">
-                        <a href="job_details.html">
-                            <h4>Digital Marketer</h4>
-                        </a>
-                        <ul>
-                            <li>Creative Agency</li>
-                            <li><i class="fas fa-map-marker-alt"></i>Athens, Greece</li>
-                            <li>$3500 - $4000</li>
-                        </ul>
-                    </div>
-                </div>
-                <div class="items-link f-right">
-                    <a href="job_details.html">Full Time</a>
-                    <span>7 hours ago</span>
-                </div>
-            </div>
-            <!-- single-job-content -->
-            <div class="single-job-items mb-30">
-                <div class="job-items">
-                    <div class="company-img">
-                        <a href="job_details.html"><img src="assets/img/icon/job-list4.png" alt=""></a>
-                    </div>
-                    <div class="job-tittle">
-                        <a href="job_details.html">
-                            <h4>Digital Marketer</h4>
-                        </a>
-                        <ul>
-                            <li>Creative Agency</li>
-                            <li><i class="fas fa-map-marker-alt"></i>Athens, Greece</li>
-                            <li>$3500 - $4000</li>
-                        </ul>
-                    </div>
-                </div>
-                <div class="items-link f-right">
-                    <a href="job_details.html">Full Time</a>
-                    <span>7 hours ago</span>
-                </div>
-            </div>
-            {{-- </div> --}}
-            {{-- </dv> --}}
-
-            {{-- <div class="chart-area">
-                <canvas id="myAreaChart"></canvas>
-            </div> --}}
         </div>
     </div>
 </div>

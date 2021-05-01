@@ -90,6 +90,8 @@ Route::group(['prefix' => 'professional'], function () {
 
         Route::get('postjob', [ProfessionalController::class, 'createJob']);
         Route::post('postjob', [ProfessionalController::class, 'postJob']);
+        Route::get('postjob/{id}/edit', [ProfessionalController::class, 'jobEdit']);
+        Route::put('/postjob/{id}', [ProfessionalController::class, 'jobUpdate'])->name('job.update');
     });
 });
 

@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers;
 
+use App\Models\Job;
 use App\Models\User;
 use App\Models\Skill;
 use App\Models\College;
@@ -29,8 +30,25 @@ class HomeController extends Controller
     {
 
         $users = User::with('college')->get();
+        $jobs = Job::latest()->paginate(7);
+        $data = [
+            'users' => $users,
+            'jobs' => $jobs,
+        ];
+
+        return view('home')->with($data);
         // $skills = Skill::with('skill')->get();
-        return view('home', compact('users'));
+        // return view('home', compact('users'));
+    }
+
+    public function showdata()
+    {
+        $jobs = Job::latest()->paginate(7);
+        $data = [
+            'jobs' => $jobs,
+        ];
+
+        return view('professional.home')->with($data);
     }
 
     public function stdprofileedit(User $id)

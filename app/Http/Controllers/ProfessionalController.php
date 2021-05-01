@@ -113,17 +113,8 @@ class ProfessionalController extends Controller
             'name' => request('name'),
             'email' => request('email'),
             'password' => Hash::make(request('password')),
-            // 'password' => request('password'),
 
-            //     // $2y$10$92IXUNpkjO0rOQ5byMi.Ye4oKoEa3Ro9llC/.og/at2.uheWG/igi
-
-            //     // 'password' => Hash::make($data['password']),
         ]);
-
-        // $id->name = request('name');
-        // $id->email = request('email');
-        // $id->password = Hash::make(request('password'));
-        // $id->save();
 
         return redirect('professional/profile');
     }
@@ -164,13 +155,41 @@ class ProfessionalController extends Controller
         return redirect('/professional/home');
     }
 
-    // end rerister professional
+    public function jobEdit(Job $id)
+    {
+        $skills = Skill::all();
+        $data = [
+            'job' => $id,
+            'skills' => $skills,
+        ];
+        return view('professional.job.edit')->with($data);
+        // return view('professional.job.edit', ['job' => $id]);
+    }
 
-    // public function logout()
-    // {
+    public function jobUpdate(Job $id)
+    {
+        request()->validate([
+            'title' => 'required',
+            'company_name' => 'required',
+            'company_phone' => 'required',
+            'company_email' => 'required',
+            'company_address' => 'required',
+            'company_website' => 'required',
+            'skill_id' => 'required',
+            'description' => 'required',
+        ]);
 
-    //     if (Auth::guard('professional')->logout()) {
-    //         return redirect()->route('professional.logout')->with('status', 'Logout Successfully!');
-    //     }
-    // }
+        $id->update([
+            'title' => request('title'),
+            'company_name' => request('company_name'),
+            'company_phone' => request('company_phone'),
+            'company_email' => request('company_email'),
+            'company_address' => request('company_address'),
+            'company_website' => request('company_website'),
+            'skill_id' => request('skill_id'),
+            'description' => request('description'),
+        ]);
+
+        return redirect('/professional/home');
+    }
 }
