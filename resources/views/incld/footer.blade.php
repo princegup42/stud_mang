@@ -14,6 +14,25 @@
 <!-- Page level custom scripts -->
 <script src="{{ asset('js/demo/chart-area-demo.js') }}"></script>
 <script src="{{ asset('js/demo/chart-pie-demo.js') }}"></script>
+<script src="https://cdn.jsdelivr.net/npm/select2@4.1.0-rc.0/dist/js/select2.min.js"></script>
+<script>
+    $(document).ready(function() {
+        // Initialize select2
+    $('.multiple').select2();
+
+    // Set option chnage on selected
+
+    $('#multiple').change(function() {
+        var value = $(this).val();
+
+        // set selected
+        $('.multiple').val(value);
+        $('.multiple').select2().trigger('change');
+    });
+
+
+    });
+</script>
 
 
 @if (Request::is('professional/home'))
@@ -22,7 +41,7 @@
 <!-- AdminLTE for demo purposes -->
 <script src="{{ asset('dist/js/demo.js') }}"></script>
 @endif
-@if (Request::is('professional/postjob'))
+{{-- @if (Request::is('professional/postjob'))
 <!-- BS-Stepper -->
 <script src="{{ asset('plugins/select2/js/select2.full.min.js') }}"></script>
 <script>
@@ -32,4 +51,4 @@
 
     })
 </script>
-@endif
+@endif --}}

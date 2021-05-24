@@ -141,22 +141,50 @@ class ProfessionalController extends Controller
             'description' => 'required',
         ]);
 
-        Job::create([
-            'title' => request('title'),
-            'company_name' => request('company_name'),
-            'company_phone' => request('company_phone'),
-            'company_email' => request('company_email'),
-            'company_address' => request('company_address'),
-            'company_website' => request('company_website'),
-            'skill_id' => request('skill_id'),
-            'description' => request('description'),
+        $job = Job::create([
+            'title' => $request->title,
+            'company_name' => $request->company_name,
+            'company_phone' => $request->company_phone,
+            'company_email' => $request->company_email,
+            'company_address' => $request->company_address,
+            'company_website' => $request->company_website,
+            'skill_id' => implode(
+                ', ',
+                $request->skill_id
+            ),
+            'description' => $request->description,
         ]);
+
+        // $job->skillid()->attach($request->skill_id);
+
+        // Job::create([
+        //     'title' => request('title'),
+        //     'company_name' => request('company_name'),
+        //     'company_phone' => request('company_phone'),
+        //     'company_email' => request('company_email'),
+        //     'company_address' => request('company_address'),
+        //     'company_website' => request('company_website'),
+        //     'skill_id' => request('skill_id'),
+        //     'description' => request('description'),
+        // ]);
 
         return redirect('/professional/home');
     }
 
     public function jobEdit(Job $id)
     {
+
+        // $zoneCityIds = [];
+        // $job = Job::find($id);
+        // $skills = Skill::all();
+        // foreach ($job->skill as $skillId) {
+        //     $zoneCityIds[] = $skillId->id;
+        // }
+
+        // return view('professional.job.edit', compact('job', 'skills', 'zoneCityIds'));
+
+
+
         $skills = Skill::all();
         $data = [
             'job' => $id,

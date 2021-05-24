@@ -47,24 +47,11 @@
                         </div>
                         <div class="form-group">
                             <label>Skills</label>
-                            <select class="select2 select2-hidden-accessible" name="skill_id" multiple=""
-                                data-placeholder="Select Skills" style="width: 100%;" data-select2-id="7" tabindex="-1"
-                                aria-hidden="true">
+                            <select class="form-control multiple" name="skill_id[]" multiple="multiple">
                                 @foreach ($skills as $skill)
                                 <option value="{{ $skill->id }}">{{ $skill->name }}</option>
                                 @endforeach
-                            </select><span class="select2 select2-container select2-container--default" dir="ltr"
-                                data-select2-id="8" style="width: 100%;"><span class="selection"><span
-                                        class="select2-selection select2-selection--multiple" role="combobox"
-                                        aria-haspopup="true" aria-expanded="false" tabindex="-1" aria-disabled="false">
-                                        <ul class="select2-selection__rendered">
-                                            <li class="select2-search select2-search--inline"><input
-                                                    class="select2-search__field" type="search" tabindex="0"
-                                                    autocomplete="off" autocorrect="off" autocapitalize="none"
-                                                    spellcheck="false" role="searchbox" aria-autocomplete="list"
-                                                    placeholder="Select a State" style="width: 577.6px;"></li>
-                                        </ul>
-                                    </span></span><span class="dropdown-wrapper" aria-hidden="true"></span></span>
+                            </select>
                         </div>
                         <div class="form-group">
                             <label>Description</label>

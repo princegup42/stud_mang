@@ -33,7 +33,7 @@
                         <th>Email</th>
                         <th>Address</th>
                         <th>Website</th>
-                        <th>Description</th>
+                        {{-- <th>Description</th> --}}
                         <th>Skills</th>
                         <th>Edit</th>
                     </tr>
@@ -47,7 +47,7 @@
                         <td>{{ $job->company_email}}</td>
                         <td>{{ $job->company_address}}</td>
                         <td>{{ $job->company_website}}</td>
-                        <td>{{ $job->description}}</td>
+                        {{-- <td>{{ $job->description}}</td> --}}
                         <td>{{ $job->skill_id}}</td>
                         <td><a href="/professional/postjob/{{ $job->id }}/edit"
                                 class="btn btn-primary btn-block"><b>Edit</b></a></td>

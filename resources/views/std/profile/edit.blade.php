@@ -41,8 +41,8 @@
                     </select>
                 </div>
                 <div class="form-group">
-                    <label for="skill_id">Skills List</label>
-                    <select class="form-control" id="skill_id[]" multiple="" name="skill_id[]">
+                    <label>Skills</label>
+                    <select class="form-control multiple" id="multiple" name="skill_id[]" multiple="multiple">
                         @foreach ($skills as $skill)
                         <option value="{{ $skill->id }}">{{ $skill->name }}</option>
                         @endforeach
